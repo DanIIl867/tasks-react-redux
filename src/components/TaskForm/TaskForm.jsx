@@ -1,19 +1,21 @@
+import { useDispatch } from "react-redux";
 import { Button } from "components/Button/Button";
-import css from "./TaskForm.module.css";
-import { addTask } from "redux/taskSlice"
-import {useDispatch} from 'react-redux'
+import { addTask } from "redux/taskSlice";
 import { nanoid } from "nanoid";
+import css from "./TaskForm.module.css";
+
 
 export const TaskForm = () => {
   const dispatch = useDispatch()
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
 
     dispatch(addTask({
-      id: nanoid(),
-      text: form.elements.text.value,
-      completed: false
+        id: nanoid(),
+        text: form.elements.text.value,
+        completed: false
     }))
     form.reset();
   };
